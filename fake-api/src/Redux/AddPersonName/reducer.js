@@ -1,13 +1,13 @@
 import { ADD_PERSONNAME } from "./action";
 
 const initialState = {
-  name: "Sobhan",
+  people: [],
 };
 
 const addNameReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PERSONNAME:
-      return { name: action.payLoad };
+      return { people: action.payLoad };
     default:
       return state;
   }

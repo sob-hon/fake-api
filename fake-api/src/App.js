@@ -10,12 +10,13 @@ const App = () => {
   const data = useSelector((state) => state.addNameReducer);
 
   useEffect(() => {
-    axios.get("https://randomuser.me/api/").then((response) => {
-      dispatch(addName(response.data.info.name));
+    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+      dispatch(addName(res.data));
     });
   }, []);
 
-  console.log(data.name);
+  console.log(data);
+
   return (
     <>
       <div className="App">
@@ -35,7 +36,12 @@ const App = () => {
         </header>
       </div>
       <h2>Name:</h2>
-      <h3>{data.name}</h3>
+
+      {
+        data.people.map((person)=>{
+          return <h3 key={person.id}>{person.name}</h3>
+        })
+      }
     </>
   );
 };
